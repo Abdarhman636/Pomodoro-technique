@@ -1,0 +1,290 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+:root {
+     --main-color: #CF4F4E;
+     --secondry-color: #FFFAE5;
+     --border-r: 5px;
+   }  
+
+   *, *::before, *::after {
+     box-sizing: border-box;
+     margin: 0;
+   }
+
+   body, h1, h2, h3, h4, h5, h6, p, ul, li {
+        padding: 0;
+        margin: 0;
+        font-family: 'Cairo', sans-serif;
+   }
+
+   ol, ul {
+	list-style: none;
+     font-family: 'Cairo', sans-serif;
+}
+
+button {
+     border: none;
+     font-family: 'Cairo', sans-serif;
+}
+
+/* ___________________________________________________ */
+
+.short-break-them {
+     --main-color: #4089A3;
+}
+
+.long-break-them {
+     --main-color: #0055A1;
+}
+
+.foucs-them {
+     --main-color: #CF4F4E;
+}
+
+body {
+     height: 100vh !important;
+     background-color: var(--main-color);
+     position: relative;
+     transition: all 0.3s ease;
+     /* overflow: hidden; */
+}
+
+body.swal2-height-auto {
+     height: 100vh !important;
+ }
+
+.my-container {
+     height: 100vh !important;
+}
+
+div#eye-dropper-overlay {
+     position: absolute !important;
+     height: 100% !important;
+ }
+
+.main-dev {
+     /* height: 100% !important; */
+     /* margin-top: 40px; */
+     flex: 2.3;
+}
+
+.second-dev {
+     background-color: var(--secondry-color);
+     height: 100% !important;
+
+     flex: 0.7;
+}
+
+.tabs-wrapper {
+     max-width: 30%;
+     width: 100%;
+}
+
+.tabs-wrapper nav {
+     height: 50px;
+}
+
+.tabs-wrapper nav label {
+     display: block;
+     cursor: pointer;
+     position: relative;
+     z-index: 1;
+     height: 100%;
+     width: 100%;
+     text-align: center;
+     line-height: 50px;
+     font-size: 17px;
+     color: var(--secondry-color);
+}
+
+input[type="radio"] {
+     display: none;
+}
+
+.tabs-wrapper nav .slider{
+     height: 100%;
+     width: 30%;
+     background: var(--secondry-color);
+     border-radius: var(--border-r);
+     z-index: 0;
+     right: 0;
+     bottom: 0;
+     transition: all 0.3s ease;
+}
+
+#focus:checked ~ nav label.focus,
+#shortBR:checked ~ nav label.shortBR,
+#longBR:checked ~ nav label.longBR {
+     color: black !important;
+     font-weight: bold;
+}
+
+
+#shortBR:checked ~ nav .slider {
+     right: 35%;
+}
+
+#longBR:checked ~ nav .slider {
+     right: 68%;
+}
+
+section .content{
+     display: none;
+}
+
+#focus:checked ~ section .content-1,
+#shortBR:checked ~ section .content-2,
+#longBR:checked ~ section .content-3{
+     display: block;
+}
+
+.swal2-title {
+     font-size: 20px !important;
+ }
+
+ .swal2-styled.swal2-confirm {
+     background-color: var(--main-color) !important;
+     color: #fff;
+ }
+
+.Pomodoro-timer {
+     font-size: 5.2vw;
+}
+
+#start-btn {
+     padding: 5px 35px;
+     background-color: var(--secondry-color);
+     font-size: 20px;
+     border-radius: var(--border-r);
+}
+
+#start-btn:hover,
+#start-btn:focus {
+     animation: pulse 1s;
+     box-shadow: 0 0 0 2em transparent;
+     transition: all 0.2 ease;
+}
+
+@keyframes pulse {
+     0% { box-shadow: 0 0 0 0 var(--secondry-color); }
+   }
+   
+
+#puse-btn {
+     padding: 5px 35px;
+     background-color: transparent;
+     border: 2px solid var(--secondry-color);
+     font-size: 20px;
+     border-radius: var(--border-r);
+     color: var(--secondry-color);
+     transition: all 0.2 ease;
+
+}
+
+#reset-btn {
+     padding: 5px 35px;
+     background-color: transparent;
+     border: 2px solid var(--secondry-color);
+     font-size: 20px;
+     border-radius: var(--border-r);
+     color: var(--secondry-color);
+     transition: all 0.2 ease;
+
+}
+
+
+.main-dev {
+     flex: 2;
+}
+
+.timer-img img {
+     width: 30vw;
+}
+
+ figcaption {
+      font-style: italic;
+ }
+
+ .todo-dev input[type="text"] {
+     border: none;
+     background: transparent;
+     border-bottom: solid black 1px;
+     position: relative;
+ }
+
+.todolist {
+     height: 180px;
+     overflow: auto;
+     overflow-x: hidden;
+     scrollbar-color: red green !important;
+}
+   
+ .todolist li {
+      position: relative;
+      padding: 5px 0;
+      text-decoration: none;
+      cursor: pointer;
+      opacity: 1;
+      padding-left: 10px;
+      padding-right: 10px;
+     }
+     
+     .todolist li.done {
+      opacity: 0.7;
+      text-decoration: line-through;
+ }
+
+ .todolist li span {
+      position: absolute;
+      left: 0;
+      cursor: pointer; 
+      padding-right: 10px;
+ }
+
+ .todo-dev button {
+     font-size: 18px;
+     font-weight: bold;
+     color: var(--secondry-color);
+     padding: 6px 0;
+     background: var(--main-color);
+     border-radius: var(--border-r);
+     opacity: 0.8;
+     pointer-events: none;
+ }
+
+ .todo-dev button.active {
+      opacity: 1 !important;
+      pointer-events: auto;
+ }
+
+ @media only screen and (max-width: 1400px) {
+     .tabs-wrapper {
+          max-width: 80%;
+          width: 100%;
+     }
+   }
+
+   @media only screen and (max-width: 1100px) {
+     .todolist {
+          height: 400px;
+     }
+     
+   }
+
+
+
+ @media only screen and (max-width: 600px) {
+     .Pomodoro-timer {
+          font-size: 70px;
+     }
+
+     .timer-img img {
+          width: 80%;
+     }
+
+     .tabs-wrapper {
+          max-width: 90%;
+          width: 100%;
+     }
+     
+   }
