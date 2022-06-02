@@ -63,7 +63,7 @@ div#eye-dropper-overlay {
  }
 
 .main-dev {
-     /* height: 100% !important; */
+     height: 100% !important;
      /* margin-top: 40px; */
      flex: 2.3;
 }
@@ -76,13 +76,16 @@ div#eye-dropper-overlay {
 }
 
 .tabs-wrapper {
-     max-width: 30%;
+     max-width: 60%;
      width: 100%;
 }
 
 .tabs-wrapper nav {
      height: 50px;
+     width: 70%;
+    margin: auto;
 }
+
 
 .tabs-wrapper nav label {
      display: block;
@@ -198,7 +201,7 @@ section .content{
 }
 
 .timer-img img {
-     width: 30vw;
+     width: 60%;
 }
 
  figcaption {
@@ -213,7 +216,7 @@ section .content{
  }
 
 .todolist {
-     height: 180px;
+     height: 100px;
      overflow: auto;
      overflow-x: hidden;
      scrollbar-color: red green !important;
