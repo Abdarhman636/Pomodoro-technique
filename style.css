@@ -43,7 +43,6 @@ button {
 
 body {
      height: 100vh !important;
-     background-color: var(--main-color);
      position: relative;
      transition: all 0.3s ease;
      /* overflow: hidden; */
@@ -64,17 +63,20 @@ div#eye-dropper-overlay {
 
 .main-dev {
      height: 100% !important;
+     background-color: var(--main-color);
      /* margin-top: 40px; */
      flex: 2.3;
 }
 
 .second-dev {
      background-color: var(--secondry-color);
-     height: 100% !important;
-
      flex: 0.7;
 }
 
+.d-flex.flex-column.justify-content-around.align-items-center {
+     margin: 20px auto !important;
+     /* height: 80% !important; */
+ }
 .tabs-wrapper {
      max-width: 60%;
      width: 100%;
@@ -82,7 +84,7 @@ div#eye-dropper-overlay {
 
 .tabs-wrapper nav {
      height: 50px;
-     width: 70%;
+     width: 55%;
     margin: auto;
 }
 
@@ -157,7 +159,7 @@ section .content{
 #start-btn {
      padding: 5px 35px;
      background-color: var(--secondry-color);
-     font-size: 20px;
+     font-size: 17px;
      border-radius: var(--border-r);
 }
 
@@ -177,7 +179,7 @@ section .content{
      padding: 5px 35px;
      background-color: transparent;
      border: 2px solid var(--secondry-color);
-     font-size: 20px;
+     font-size: 17px;
      border-radius: var(--border-r);
      color: var(--secondry-color);
      transition: all 0.2 ease;
@@ -188,7 +190,7 @@ section .content{
      padding: 5px 35px;
      background-color: transparent;
      border: 2px solid var(--secondry-color);
-     font-size: 20px;
+     font-size: 17px;
      border-radius: var(--border-r);
      color: var(--secondry-color);
      transition: all 0.2 ease;
@@ -201,13 +203,17 @@ section .content{
 }
 
 .timer-img img {
-     width: 60%;
+     width: 55%;
 }
 
  figcaption {
       font-style: italic;
  }
 
+ .todo-dev {
+     width: 80%!important;
+     height: 80%;
+ }
  .todo-dev input[type="text"] {
      border: none;
      background: transparent;
@@ -216,7 +222,7 @@ section .content{
  }
 
 .todolist {
-     height: 100px;
+     height: 60%;
      overflow: auto;
      overflow-x: hidden;
      scrollbar-color: red green !important;
@@ -224,7 +230,7 @@ section .content{
    
  .todolist li {
       position: relative;
-      padding: 5px 0;
+      padding-top: 20px;
       text-decoration: none;
       cursor: pointer;
       opacity: 1;
@@ -253,6 +259,7 @@ section .content{
      border-radius: var(--border-r);
      opacity: 0.8;
      pointer-events: none;
+     margin-top: 20px;
  }
 
  .todo-dev button.active {
@@ -265,11 +272,15 @@ section .content{
           max-width: 80%;
           width: 100%;
      }
+
+     .tabs-wrapper nav {
+          width: 90%;
+     }
    }
 
    @media only screen and (max-width: 1100px) {
-     .todolist {
-          height: 400px;
+     .tabs-wrapper nav label {
+          font-size: 15px;
      }
      
    }

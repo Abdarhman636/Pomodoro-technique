@@ -13,14 +13,24 @@ const quoteText = document.querySelector('.quote-text')
 const quoteAuthor = document.querySelector('#author')
 
 let timerRuning = false
-let startingTime = 25;
-let foucsTime = 25;
+let startingTime = 1;
+let foucsTime = 1;
 let shortBreakTime = 5;
 let longBreakTime = 15;
 let time = startingTime * 60
 let startingMinutes = Math.floor(time / 60)
 let audio = new Audio('assets/audio/alarm.mp3')
 const startingseconds = "0" + 0
+
+Notification.requestPermission()
+
+if (Notification.permission === 'granted') {
+     console.log('we got it')
+} else if (Notification.permission === 'denied') {
+     Notification.requestPermission().then(permission => {
+          console.log(permission)
+     })
+}
 
 loadQuota()
 
