@@ -12,6 +12,7 @@ const toDoListUl = document.querySelector('.todolist')
 const quoteText = document.querySelector('.quote-text')
 const quoteAuthor = document.querySelector('#author')
 
+let ourPermission;
 let timerRuning = false
 let startingTime = 1;
 let foucsTime = 1;
@@ -31,6 +32,25 @@ if (Notification.permission === 'granted') {
           console.log(permission)
      })
 }
+
+function askPermission() {
+     if (Notification.permission === 'granted') {
+          showNotification()
+     } else if (Notification.permission === 'denied') {
+          Notification.requestPermission().then(permission => {
+               if (permission === 'granted') {
+                    showNotification()
+               }
+          })
+     }
+}
+
+function showNotification() {
+     const ourNotification = new Notification('Hi There', {
+          body: 'test test test'
+     })
+}
+
 
 loadQuota()
 

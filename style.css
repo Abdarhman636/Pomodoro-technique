@@ -53,7 +53,7 @@ body.swal2-height-auto {
  }
 
 .my-container {
-     height: 100vh !important;
+     height: 100% !important;
 }
 
 div#eye-dropper-overlay {
@@ -62,7 +62,7 @@ div#eye-dropper-overlay {
  }
 
 .main-dev {
-     height: 100% !important;
+     /* height: 100% !important; */
      background-color: var(--main-color);
      /* margin-top: 40px; */
      flex: 2.3;
@@ -74,7 +74,7 @@ div#eye-dropper-overlay {
 }
 
 .d-flex.flex-column.justify-content-around.align-items-center {
-     margin: 20px auto !important;
+     margin: 0px auto !important;
      /* height: 80% !important; */
  }
 .tabs-wrapper {
@@ -222,7 +222,7 @@ section .content{
  }
 
 .todolist {
-     height: 60%;
+     max-height: 280px;
      overflow: auto;
      overflow-x: hidden;
      scrollbar-color: red green !important;
