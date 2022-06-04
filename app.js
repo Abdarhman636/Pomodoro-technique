@@ -23,32 +23,46 @@ let startingMinutes = Math.floor(time / 60)
 let audio = new Audio('assets/audio/alarm.mp3')
 const startingseconds = "0" + 0
 
-Notification.requestPermission()
+// Notification.requestPermission()
 
-if (Notification.permission === 'granted') {
-     console.log('we got it')
-} else if (Notification.permission === 'denied') {
-     Notification.requestPermission().then(permission => {
-          console.log(permission)
-     })
-}
+askPermission()
+
+// if (Notification.permission === 'granted') {
+//      console.log('we got it')
+// } else if (Notification.permission === 'denied') {
+//      Notification.requestPermission().then(permission => {
+//           console.log(permission)
+//      })
+// }
+
 
 function askPermission() {
      if (Notification.permission === 'granted') {
-          showNotification()
+          console.log('got it')
      } else if (Notification.permission === 'denied') {
           Notification.requestPermission().then(permission => {
                if (permission === 'granted') {
-                    showNotification()
+                    console.log('got it')
                }
           })
      }
 }
 
 function showNotification() {
-     const ourNotification = new Notification('Hi There', {
-          body: 'test test test'
-     })
+     let doneFouceNotification;
+     if (Notification.permission === 'granted') {
+          doneFouceNotification = new Notification('كفو عليك', {
+               body: 'خلصت تقدر ترتاح دلوقتي'
+          })
+     } else if (Notification.permission === 'denied') {
+          Notification.requestPermission().then(permission => {
+               if (permission === 'granted') {
+                    doneFouceNotification = new Notification('كفو عليك', {
+                         body: 'خلصت تقدر ترتاح دلوقتي'
+                    })
+               }
+          })
+     }
 }
 
 
@@ -128,6 +142,7 @@ function updateTimer() {
                     foucsTab.checked = true
                     foucsTimeFun()
                } else {
+                    showNotification()
                     Swal.fire("✌️ كفو عليك ي بطل، تستاهل راحه")
                     shortBRtab.checked = true
                     shortBreakFun()

@@ -41,6 +41,10 @@ button {
      --main-color: #CF4F4E;
 }
 
+html {
+     height: 100vh;
+}
+
 body {
      height: 100vh !important;
      position: relative;
@@ -222,7 +226,7 @@ section .content{
  }
 
 .todolist {
-     max-height: 280px;
+     height: 280px;
      overflow: auto;
      overflow-x: hidden;
      scrollbar-color: red green !important;
