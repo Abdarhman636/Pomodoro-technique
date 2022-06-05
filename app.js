@@ -36,13 +36,13 @@ askPermission()
 // }
 
 
-function askPermission() {
+function askPermission(NotificationMSG) {
      if (Notification.permission === 'granted') {
-          return 'granted'
+          showNotification(NotificationMSG)
      } else if (Notification.permission === 'denied') {
           Notification.requestPermission().then(permission => {
                if (permission === 'granted') {
-                    return 'granted'
+                    showNotification(NotificationMSG)
                }
           })
      }
@@ -50,19 +50,9 @@ function askPermission() {
 
 function showNotification(NotificationMSG) {
      let doneFouceNotification;
-     if (Notification.permission === 'granted') {
-          doneFouceNotification = new Notification('كفو عليك', {
-               body: NotificationMSG
-          })
-     } else if (Notification.permission === 'denied') {
-          Notification.requestPermission().then(permission => {
-               if (permission === 'granted') {
-                    doneFouceNotification = new Notification('كفو عليك', {
-                         body: NotificationMSG
-                    })
-               }
-          })
-     }
+     doneFouceNotification = new Notification('كفو عليك', {
+          body: NotificationMSG
+     })
 }
 
 
@@ -134,15 +124,17 @@ function updateTimer() {
 
 
                if (startingTime === shortBreakTime) {
+                    askPermission('اسطورة')
                     Swal.fire("💪 خلص وقت الراحه القصيرة، نرجع للشغل والتركيز")
                     foucsTab.checked = true
                     foucsTimeFun()
                } else if (startingTime === longBreakTime) {
+                    askPermission('اسطورة')
                     Swal.fire("💪 خلص وقت الراحه الطويلة، نرجع للشغل والتركيز")
                     foucsTab.checked = true
                     foucsTimeFun()
                } else {
-                    showNotification('اسطورة')
+                    askPermission('اسطورة')
                     Swal.fire("✌️ كفو عليك ي بطل، تستاهل راحه")
                     shortBRtab.checked = true
                     shortBreakFun()
