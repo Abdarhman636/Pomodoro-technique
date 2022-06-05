@@ -38,27 +38,27 @@ askPermission()
 
 function askPermission() {
      if (Notification.permission === 'granted') {
-          console.log('got it')
+          return 'granted'
      } else if (Notification.permission === 'denied') {
           Notification.requestPermission().then(permission => {
                if (permission === 'granted') {
-                    console.log('got it')
+                    return 'granted'
                }
           })
      }
 }
 
-function showNotification() {
+function showNotification(NotificationMSG) {
      let doneFouceNotification;
      if (Notification.permission === 'granted') {
           doneFouceNotification = new Notification('كفو عليك', {
-               body: 'خلصت تقدر ترتاح دلوقتي'
+               body: NotificationMSG
           })
      } else if (Notification.permission === 'denied') {
           Notification.requestPermission().then(permission => {
                if (permission === 'granted') {
                     doneFouceNotification = new Notification('كفو عليك', {
-                         body: 'خلصت تقدر ترتاح دلوقتي'
+                         body: NotificationMSG
                     })
                }
           })
@@ -142,7 +142,7 @@ function updateTimer() {
                     foucsTab.checked = true
                     foucsTimeFun()
                } else {
-                    showNotification()
+                    showNotification('اسطورة')
                     Swal.fire("✌️ كفو عليك ي بطل، تستاهل راحه")
                     shortBRtab.checked = true
                     shortBreakFun()

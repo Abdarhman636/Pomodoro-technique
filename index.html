@@ -15,8 +15,8 @@
      <title>Pomodoro Timer</title>
 </head>
 
-<body>
-     <div class=" d-flex my-container flex-xl-row flex-column">
+<body onload=askPermission()>
+     <div class="my-container ">
 
           <!-- -------------------------------------------------------------------------------- -->
 
@@ -38,9 +38,6 @@
                          <div class="content content-1">
                               <div class="timer-img m-auto d-flex justify-content-center">
                                    <img src="assets/imgs/timer-imgs.png" alt="" class="pt-2">
-                                   <!-- <iframe src="https://embed.lottiefiles.com/animation/57286"></iframe> -->
-                                   <!-- <iframe src="https://embed.lottiefiles.com/animation/69111"></iframe> -->
-                                   <!-- <script src="svg.json"></script> -->
                               </div>
                          </div>
 
@@ -78,7 +75,7 @@
           <!-- -------------------------------------------------------------------------------- -->
 
 
-          <section class="second-dev d-flex   ">
+          <section class="second-dev d-flex  py-5">
 
                <div class="d-flex flex-column justify-content-around align-items-center ">
                     <div class="quote-dev text-center w-75 pt-3">
@@ -89,7 +86,7 @@
                          </figure>
                     </div>
 
-                    <div class="todo-dev py-5 mt-3 pt-md-4">
+                    <div class="todo-dev py-5 mt-5 pt-md-4">
                          <input type="text" class="w-100 text-end" placeholder="اكتب مهماتك هنا">
                          <ul class="todolist text-end pt-4 mb-6">
                               <!-- <li><span><i class="fa-solid fa-trash"></i></span>ارتب الدروس الي هتبقى ف
@@ -104,6 +101,7 @@
                </div>
           </section>
      </div>
+
      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
      <script src="app.js"></script>
 </body>
