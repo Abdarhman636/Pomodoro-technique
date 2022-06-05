@@ -75,6 +75,8 @@ div#eye-dropper-overlay {
 .second-dev {
      background-color: var(--secondry-color);
      flex: 0.7;
+          /* overflow: auto; 
+      overflow-x: hidden; */
 }
 
 .d-flex.flex-column.justify-content-around.align-items-center {
@@ -202,9 +204,9 @@ section .content{
 }
 
 
-.main-dev {
+/* .main-dev {
      flex: 2;
-}
+} */
 
 .timer-img img {
      width: 55%;
@@ -226,10 +228,9 @@ section .content{
  }
 
 .todolist {
-     height: 280px;
+     max-height: 220px;
      overflow: auto;
      overflow-x: hidden;
-     scrollbar-color: red green !important;
 }
    
  .todolist li {

@@ -161,6 +161,8 @@ function updateTimer() {
 }
 
 startBTN.addEventListener('click', () => {
+     shortBRtab.style.pointerEvents = "none";
+     longBRtab.style.pointerEvents = "none";
      if (timerRuning === true) {
           Swal.fire("الرجاء ايقاف او إعادة تعين المؤقت حتى تتمكن من البدء من جديد")
      } else {
@@ -172,6 +174,8 @@ startBTN.addEventListener('click', () => {
 })
 
 puseBTN.addEventListener('click', () => {
+     shortBRtab.style.pointerEvents = "auto";
+     longBRtab.style.pointerEvents = "auto";
      clearInterval(myInterval)
      timerRuning = false
 })
