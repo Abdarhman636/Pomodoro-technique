@@ -20,7 +20,29 @@
 
           <!-- -------------------------------------------------------------------------------- -->
 
-          <main class="main-dev d-flex flex-column justify-content-center align-items-center">
+          <main class="main-dev d-flex flex-column justify-content-center align-items-center position-relative">
+
+               <div class="setting showset d-flex justify-content-center align-items-center" id="settings-dev">
+                    <div class="d-flex flex-column w-25">
+                         <div>
+                              <form class="d-flex flex-column p-5 text-end">
+                                   <label class="fw-bold" for="focus">مدة وقت التركيز</label>
+                                   <input class="text-end mt-1 mb-3" type="number" id="focusTime-settings" required
+                                        placeholder="25" name="focus" min="2" max="60">
+                                   <label class="fw-bold" for="focus">مدة الراحة القصيرة</label>
+                                   <input class="text-end mt-1 mb-3" type="number" id="shortBreak-settings" required
+                                        placeholder="5" name="focus" min="1" max="15">
+                                   <label class="fw-bold" for="focus">مدة الراحه الطويلة</label>
+                                   <input class="text-end mt-1 mb-3" type="number" id="longBreak-settings" required
+                                        placeholder="30" name="focus" min="1" max="30">
+                                   <button class="mt-2 fw-bold" type="submit">تعديل</button>
+                              </form>
+                         </div>
+                    </div>
+               </div>
+
+               <span class="position-absolute" id="settings"><i class="fa-solid fa-gear"></i></span>
+
 
                <div class="tabs-wrapper m-auto ">
                     <input type="radio" name="slider" id="longBR">

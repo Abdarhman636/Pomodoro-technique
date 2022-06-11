@@ -11,29 +11,61 @@ const addTaskButton = document.querySelector('.todo-dev button')
 const toDoListUl = document.querySelector('.todolist')
 const quoteText = document.querySelector('.quote-text')
 const quoteAuthor = document.querySelector('#author')
+const settingsBTN = document.getElementById('settings')
+const settingsDev = document.getElementById('settings-dev')
+const settingsForm = document.querySelector('form')
+const focusTimeSettings = document.getElementById('focusTime-settings')
+const shortBreakSettings = document.getElementById('shortBreak-settings')
+const longBreakSettings = document.getElementById('longBreak-settings')
 
+let storedShortTime;
+let storedLongTime;
+let storedFoucseTime;
+let studyCircle = 0;
 let ourPermission;
 let timerRuning = false
-let startingTime = 1;
-let foucsTime = 1;
-let shortBreakTime = 5;
-let longBreakTime = 15;
+let startingTime = localStorage.getItem('storedFoucseTime') ? localStorage.getItem('storedFoucseTime') : 25
+let foucsTime = localStorage.getItem('storedFoucseTime') ? localStorage.getItem('storedFoucseTime') : 25
+let shortBreakTime = localStorage.getItem('storedShortTime') ? localStorage.getItem('storedShortTime') : 5;
+let longBreakTime = localStorage.getItem('storedLongTime') ? localStorage.getItem('storedLongTime') : 15
 let time = startingTime * 60
 let startingMinutes = Math.floor(time / 60)
 let audio = new Audio('assets/audio/alarm.mp3')
 const startingseconds = "0" + 0
 
-// Notification.requestPermission()
+focusTimeSettings.value = localStorage.getItem('storedFoucseTime') ? localStorage.getItem('storedFoucseTime') : 25
+shortBreakSettings.value = localStorage.getItem('storedShortTime') ? localStorage.getItem('storedShortTime') : 5;
+longBreakSettings.value = localStorage.getItem('storedLongTime') ? localStorage.getItem('storedLongTime') : 15
 
-askPermission()
+function addTimeToLocalStorage(foucsTime, startingTime, shortBreakTime, longBreakTime) {
+     if (localStorage.getItem('storedFoucseTime')) {
+          storedFoucseTime = startingTime
+          foucsTime = startingTime
+          parseInt(localStorage.setItem('storedFoucseTime', storedFoucseTime))
+     } else {
+          storedFoucseTime = startingTime
+          foucsTime = startingTime
+          localStorage.setItem('storedFoucseTime', storedFoucseTime)
+     }
 
-// if (Notification.permission === 'granted') {
-//      console.log('we got it')
-// } else if (Notification.permission === 'denied') {
-//      Notification.requestPermission().then(permission => {
-//           console.log(permission)
-//      })
-// }
+     if (localStorage.getItem('storedShortTime')) {
+          storedShortTime = shortBreakTime
+          parseInt(localStorage.setItem('storedShortTime', storedShortTime))
+     } else {
+          storedShortTime = shortBreakTime
+          localStorage.setItem('storedShortTime', storedShortTime)
+     }
+
+     if (localStorage.getItem('storedLongTime')) {
+          storedLongTime = longBreakTime
+          parseInt(localStorage.setItem('storedLongTime', storedLongTime))
+     } else {
+          storedLongTime = longBreakTime
+          localStorage.setItem('storedLongTime', storedLongTime)
+     }
+
+     location.reload()
+}
 
 
 function askPermission(NotificationMSG) {
@@ -55,6 +87,25 @@ function showNotification(NotificationMSG) {
      })
 }
 
+settingsBTN.addEventListener('click', () => {
+     settingsDev.classList.toggle('showset')
+})
+
+// function openSettings() {
+//      console.log('sdf')
+// }
+
+settingsForm.addEventListener('submit', (e) => {
+     e.preventDefault()
+     startingTime = focusTimeSettings.value
+     foucsTime = focusTimeSettings.value
+     shortBreakTime = shortBreakSettings.value
+     longBreakTime = longBreakSettings.value
+     addTimeToLocalStorage(foucsTime, startingTime, shortBreakTime, longBreakTime)
+     console.log(shortBreakSettings.value)
+     settingsDev.classList.toggle('showset')
+})
+
 
 loadQuota()
 
@@ -67,7 +118,6 @@ function loadQuota() {
 function getRandomQuates(Quotas) {
      let randomNumber = Math.floor(Math.random() * Quotas.length)
      let randomQuates = Quotas[randomNumber]
-     console.log(quoteText.innerHTML)
      quoteText.innerHTML = `"${randomQuates.text}"`
      quoteAuthor.innerHTML = `${randomQuates.author} --`
 }
@@ -122,15 +172,14 @@ function updateTimer() {
                timerRuning = false
                audio.play()
 
-
                if (startingTime === shortBreakTime) {
                     askPermission('اسطورة')
-                    Swal.fire("💪 خلص وقت الراحه القصيرة، نرجع للشغل والتركيز")
+                    Swal.fire("💪 خلص الوقت وجا وقت البريك ي اسطورةة")
                     foucsTab.checked = true
                     foucsTimeFun()
                } else if (startingTime === longBreakTime) {
                     askPermission('اسطورة')
-                    Swal.fire("💪 خلص وقت الراحه الطويلة، نرجع للشغل والتركيز")
+                    Swal.fire("💪 جاء وقت البريك الطويل كفو عليك ي و ححشش")
                     foucsTab.checked = true
                     foucsTimeFun()
                } else {
@@ -153,8 +202,6 @@ function updateTimer() {
 }
 
 startBTN.addEventListener('click', () => {
-     shortBRtab.style.pointerEvents = "none";
-     longBRtab.style.pointerEvents = "none";
      if (timerRuning === true) {
           Swal.fire("الرجاء ايقاف او إعادة تعين المؤقت حتى تتمكن من البدء من جديد")
      } else {
@@ -206,7 +253,12 @@ function changeFoucsTimeColor() {
 inputEL.onkeyup = () => {
      let userInput = inputEL.value
      if (userInput.trim() != 0) {
-          addTaskButton.classList.add('active')
+          console.log(userInput.length)
+          if (userInput.length <= 40) {
+               addTaskButton.classList.add('active')
+          } else {
+               addTaskButton.classList.remove('active')
+          }
      } else {
           addTaskButton.classList.remove('active')
      }
@@ -259,6 +311,7 @@ function addtoLoccalStorage(userInput) {
      toDos.push(userInput)
      localStorage.setItem('toDos', JSON.stringify(toDos))
 }
+
 
 function getToDoListFromLocalStorage() {
      let toDos;

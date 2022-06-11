@@ -58,11 +58,35 @@ body.swal2-height-auto {
 
 .my-container {
      height: 100vh !important;
+     position: relative;
 }
 
 div#eye-dropper-overlay {
      position: absolute !important;
      height: 100% !important;
+ }
+
+ .setting {
+      height: 100%;
+      width: 100%;
+     position: fixed;
+     Top:50%;
+     Left:50%;
+     Transform: translate(-50%, -50%);
+     background-color: rgba(0, 0, 0, 0.4);
+     z-index: 50;
+     transition: all 5s ease;
+}
+
+.showset {
+      display: none !important;
+      transition: all 5s ease;
+
+ }
+
+ .setting div {
+      background: var(--secondry-color);
+      border-radius: var(--border-r)
  }
 
 .main-dev {
@@ -81,6 +105,25 @@ div#eye-dropper-overlay {
      margin: 0px auto !important;
      width: 50%;
  }
+
+#settings {
+      top: 35px;
+      right: 35px;
+      color: var(--secondry-color);
+      font-size: 30px;
+      cursor: pointer;
+      z-index: 100;
+     }
+     
+     
+     #settings i {
+     transition: all 1 ease;
+
+}
+ #settings:hover i{
+      transform: rotate(90deg);
+ }
+ 
 .tabs-wrapper {
      max-width: 60%;
      width: 100%;
@@ -88,7 +131,7 @@ div#eye-dropper-overlay {
 
 .tabs-wrapper nav {
      height: 50px;
-     width: 55%;
+     width: 50%;
     margin: auto;
 }
 
@@ -112,7 +155,7 @@ input[type="radio"] {
 
 .tabs-wrapper nav .slider{
      height: 100%;
-     width: 30%;
+     width: 29%;
      background: var(--secondry-color);
      border-radius: var(--border-r);
      z-index: 0;
@@ -134,7 +177,7 @@ input[type="radio"] {
 }
 
 #longBR:checked ~ nav .slider {
-     right: 68%;
+     right: 69%;
 }
 
 section .content{
@@ -163,12 +206,16 @@ section .content{
 #start-btn {
      padding: 5px 35px;
      background-color: var(--secondry-color);
-     font-size: 17px;
+     font-size: 18px;
      border-radius: var(--border-r);
 }
 
 #start-btn:hover,
-#start-btn:focus {
+#start-btn:focus,
+#puse-btn:hover,
+#puse-btn:focus,
+#reset-btn:hover,
+#reset-btn:focus {
      animation: pulse 1s;
      box-shadow: 0 0 0 2em transparent;
      transition: all 0.2 ease;
@@ -180,7 +227,7 @@ section .content{
    
 
 #puse-btn {
-     padding: 5px 35px;
+     padding: 5px 30px;
      background-color: transparent;
      border: 2px solid var(--secondry-color);
      font-size: 17px;
@@ -191,7 +238,7 @@ section .content{
 }
 
 #reset-btn {
-     padding: 5px 35px;
+     padding: 5px 30px;
      background-color: transparent;
      border: 2px solid var(--secondry-color);
      font-size: 17px;
@@ -271,20 +318,31 @@ section .content{
       pointer-events: auto;
  }
 
+ input[type=number] {
+     border: none;
+ }
+
+ button[type=submit] {
+     padding: 5px 35px;
+     background-color: var(--main-color);
+     font-size: 18px;
+     color: var(--secondry-color);
+     border-radius: var(--border-r);
+ }
+
  @media only screen and (max-width: 1400px) {
      .tabs-wrapper {
           max-width: 80%;
           width: 100%;
-     }
-
-     .tabs-wrapper nav {
-          width: 90%;
      }
    }
 
    @media only screen and (max-width: 1100px) {
      .tabs-wrapper nav label {
           font-size: 15px;
+     }
+     .tabs-wrapper nav {
+          width: 90%;
      }
      
    }
