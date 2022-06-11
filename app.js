@@ -71,7 +71,7 @@ function addTimeToLocalStorage(foucsTime, startingTime, shortBreakTime, longBrea
 function askPermission(NotificationMSG) {
      if (Notification.permission === 'granted') {
           showNotification(NotificationMSG)
-     } else if (Notification.permission === 'denied') {
+     } else if (Notification.permission === 'denied' || Notification.permission === 'denied') {
           Notification.requestPermission().then(permission => {
                if (permission === 'granted') {
                     showNotification(NotificationMSG)
@@ -81,7 +81,6 @@ function askPermission(NotificationMSG) {
 }
 
 function showNotification(NotificationMSG) {
-     let doneFouceNotification;
      doneFouceNotification = new Notification('كفو عليك', {
           body: NotificationMSG
      })
@@ -90,10 +89,6 @@ function showNotification(NotificationMSG) {
 settingsBTN.addEventListener('click', () => {
      settingsDev.classList.toggle('showset')
 })
-
-// function openSettings() {
-//      console.log('sdf')
-// }
 
 settingsForm.addEventListener('submit', (e) => {
      e.preventDefault()
@@ -174,20 +169,28 @@ function updateTimer() {
 
                if (startingTime === shortBreakTime) {
                     askPermission('اسطورة')
-                    Swal.fire("💪 خلص الوقت وجا وقت البريك ي اسطورةة")
+                    Swal.fire("💪 خلص وقت البريك وخلص وقت الشغل")
                     foucsTab.checked = true
                     foucsTimeFun()
                } else if (startingTime === longBreakTime) {
                     askPermission('اسطورة')
-                    Swal.fire("💪 جاء وقت البريك الطويل كفو عليك ي و ححشش")
+                    Swal.fire("💪 خلص وقت البريك وخلص وقت الشغل")
                     foucsTab.checked = true
                     foucsTimeFun()
                } else {
                     askPermission('اسطورة')
-                    Swal.fire("✌️ كفو عليك ي بطل، تستاهل راحه")
-                    shortBRtab.checked = true
-                    shortBreakFun()
-                    changeShortBreakColor()
+                    if (studyCircle < 4) {
+                         Swal.fire("✌️  كفو عليك ي بطل، تستاهل راحه قصيرة")
+                         shortBRtab.checked = true
+                         shortBreakFun()
+                         changeShortBreakColor()
+                         studyCircle++
+                    } else if (studyCircle >= 4) {
+                         Swal.fire("✌️  كفو عليك ي بطل، تستاهل راحه طويلة")
+                         longBRtab.checked = true
+                         longBreakFun()
+                         studyCircle = 0
+                    }
                }
 
           } else {
@@ -226,11 +229,6 @@ resetBTN.addEventListener('click', () => {
      document.title = `Pomodoro Timer - ${startingTime}: ${seconds}`
      timerRuning = false
 })
-
-
-// function playAudio() {
-//      audio.play()
-// }
 
 function changeShortBreakColor() {
      document.body.classList.remove('foucs-them')
