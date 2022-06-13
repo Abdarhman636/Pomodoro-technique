@@ -17,6 +17,7 @@ const settingsForm = document.querySelector('form')
 const focusTimeSettings = document.getElementById('focusTime-settings')
 const shortBreakSettings = document.getElementById('shortBreak-settings')
 const longBreakSettings = document.getElementById('longBreak-settings')
+const closeBTN = document.getElementById('close')
 
 let storedShortTime;
 let storedLongTime;
@@ -87,6 +88,10 @@ function showNotification(NotificationMSG) {
 }
 
 settingsBTN.addEventListener('click', () => {
+     settingsDev.classList.toggle('showset')
+})
+
+closeBTN.addEventListener('click', () => {
      settingsDev.classList.toggle('showset')
 })
 

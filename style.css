@@ -73,7 +73,7 @@ div#eye-dropper-overlay {
      Top:50%;
      Left:50%;
      Transform: translate(-50%, -50%);
-     background-color: rgba(0, 0, 0, 0.4);
+     background-color: rgba(0, 0, 0, 0.7);
      z-index: 50;
      transition: all 5s ease;
 }
@@ -125,7 +125,7 @@ div#eye-dropper-overlay {
  }
  
 .tabs-wrapper {
-     max-width: 60%;
+     max-width: 50%;
      width: 100%;
 }
 
@@ -255,7 +255,7 @@ section .content{
 
 .timer-img img {
      width: 55%;
-     max-width: 555px;
+     max-width: 410px;
 }
 
  figcaption {
@@ -274,7 +274,7 @@ section .content{
  }
 
 .todolist {
-     height: 350px;
+     max-height: 350px;
      overflow: auto;
      overflow-x: hidden;
 }
@@ -328,6 +328,14 @@ section .content{
      font-size: 18px;
      color: var(--secondry-color);
      border-radius: var(--border-r);
+ }
+
+ #close {
+     left: 12px;
+     top: 12px;
+     color: var(--main-color);
+     font-size: 22px;
+     cursor: pointer;
  }
 
  @media only screen and (max-width: 1400px) {
