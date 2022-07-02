@@ -381,7 +381,7 @@ section .content{
 
  @media only screen and (max-width: 600px) {
      .Pomodoro-timer {
-          font-size: 70px;
+          font-size: 100px;
      }
 
      .timer-img img {
