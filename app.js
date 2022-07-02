@@ -18,6 +18,7 @@ const focusTimeSettings = document.getElementById('focusTime-settings')
 const shortBreakSettings = document.getElementById('shortBreak-settings')
 const longBreakSettings = document.getElementById('longBreak-settings')
 const closeBTN = document.getElementById('close')
+const fullScrBTN = document.getElementById('fullscr')
 
 let storedShortTime;
 let storedLongTime;
@@ -86,6 +87,13 @@ function showNotification(NotificationMSG) {
           body: NotificationMSG
      })
 }
+
+// const showNotificationtwo = (NotificationMSG) => {
+//      doneNotification = new Notification('كفو عليك ي بطل', {
+//           body: NotificationMSG,
+//           alert: 'لازم يكون عندك هدف علشان تعرف تحققع'
+//      })
+// }
 
 settingsBTN.addEventListener('click', () => {
      settingsDev.classList.toggle('showset')
@@ -343,3 +351,22 @@ function removeToDoListFromLocalStorage(newToDo) {
      toDos.splice(toDoIndex, 1)
      localStorage.setItem('toDos', JSON.stringify(toDos))
 }
+
+function toggleFullScreen() {
+     if (document.fullscreen) {
+          document.exitFullscreen()
+     } else {
+          document.documentElement.requestFullscreen().catch((e) => {
+               console.log(e)
+          })
+     }
+}
+
+fullScrBTN.addEventListener('click', () => {
+     toggleFullScreen()
+})
+
+document.addEventListener('dblclick', () => {
+     toggleFullScreen()
+
+})

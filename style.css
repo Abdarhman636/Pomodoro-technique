@@ -115,6 +115,14 @@ div#eye-dropper-overlay {
       z-index: 100;
      }
      
+     #fullscr {
+          top: 35px;
+          right: 85px;
+          color: var(--secondry-color);
+          font-size: 30px;
+          cursor: pointer;
+          z-index: 100;
+         }
      
      #settings i {
      transition: all 1 ease;
@@ -127,6 +135,7 @@ div#eye-dropper-overlay {
 .tabs-wrapper {
      max-width: 50%;
      width: 100%;
+     /* padding-top: ; */
 }
 
 .tabs-wrapper nav {
@@ -148,6 +157,8 @@ div#eye-dropper-overlay {
      font-size: 17px;
      color: var(--secondry-color);
 }
+
+
 
 input[type="radio"] {
      display: none;
@@ -200,7 +211,7 @@ section .content{
  }
 
 .Pomodoro-timer {
-     font-size: 5.2vw;
+     font-size: 9.2vw;
 }
 
 #start-btn {
@@ -254,7 +265,7 @@ section .content{
 } */
 
 .timer-img img {
-     width: 55%;
+     width: 50%;
      max-width: 410px;
 }
 
@@ -274,9 +285,9 @@ section .content{
  }
 
 .todolist {
-     max-height: 350px;
-     overflow: auto;
-     overflow-x: hidden;
+     /* max-height: 350px; */
+     /* overflow: auto;
+     overflow-x: hidden; */
 }
    
  .todolist li {
@@ -342,6 +353,10 @@ section .content{
      .tabs-wrapper {
           max-width: 80%;
           width: 100%;
+     }
+
+     .contentd-flex {
+          width: 85% !important;
      }
    }
 

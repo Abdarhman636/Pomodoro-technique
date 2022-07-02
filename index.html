@@ -17,14 +17,15 @@
 
 <body>
      <div class="my-container ">
+          <!-- <h1>1</h1> -->
 
           <!-- -------------------------------------------------------------------------------- -->
 
-          <main class="main-dev d-flex flex-column justify-content-center align-items-center position-relative">
+          <main class="main-dev justify-content-center d-flex flex-column align-items-center position-relative">
 
                <div class="setting showset d-flex justify-content-center align-items-center " id="settings-dev">
 
-                    <div class="d-flex flex-column w-25 position-relative">
+                    <div class="contentd-flex flex-column w-25 position-relative">
                          <i id="close" class="fa-solid fa-circle-xmark position-absolute "></i>
                          <div>
                               <form class="d-flex flex-column p-5 text-end">
@@ -44,14 +45,14 @@
                </div>
 
                <span class="position-absolute" id="settings"><i class="fa-solid fa-gear"></i></span>
+               <span class="position-absolute" id="fullscr"><i class="fa-solid fa-expand"></i></span>
 
 
-               <div class="tabs-wrapper m-auto ">
+               <div class="tabs-wrapper ">
                     <input type="radio" name="slider" id="longBR">
                     <input type="radio" name="slider" id="shortBR">
                     <input type="radio" name="slider" id="focus" checked>
-                    <nav
-                         class="tabs d-flex justify-content-center align-items-center gap-3 position-relative d-flex align-items-center justify-content-center">
+                    <nav class="tabs d-flex align-items-center gap-3 position-relative d-flex">
                          <label for="longBR" class="longBR">راحه طويلة</label>
                          <label for="shortBR" class="shortBR">راحه قصيرة</label>
                          <label for="focus" class="focus">وقت التركيز</label>
@@ -59,24 +60,6 @@
                     </nav>
 
                     <section>
-                         <div class="content content-1">
-                              <div class="timer-img m-auto d-flex justify-content-center">
-                                   <img src="assets/imgs/timer-image2.png" alt="" class="pt-2">
-                              </div>
-                         </div>
-
-                         <div class="content content-2">
-                              <div class="timer-img m-auto d-flex justify-content-center">
-                                   <img src="assets/imgs/timer-imgs.png" alt="" class="pt-2">
-                              </div>
-                         </div>
-
-                         <div class="content content-3">
-                              <div class="timer-img m-auto d-flex justify-content-center">
-                                   <img src="assets/imgs/timer-imgs.png" alt="" class="pt-2">
-                              </div>
-                         </div>
-
                          <div class="timer-dev text-center py-3">
                               <h1 class="Pomodoro-timer text-white fw-bold py-4" id="Pomodoro-timer">15: 00</h1>
                          </div>
