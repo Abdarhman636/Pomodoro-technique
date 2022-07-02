@@ -33,6 +33,7 @@ let longBreakTime = localStorage.getItem('storedLongTime') ? localStorage.getIte
 let time = startingTime * 60
 let startingMinutes = Math.floor(time / 60)
 let audio = new Audio('assets/audio/alarm.mp3')
+let startAudio = new Audio('assets/audio/startaudio.mp3')
 const startingseconds = "0" + 0
 
 focusTimeSettings.value = localStorage.getItem('storedFoucseTime') ? localStorage.getItem('storedFoucseTime') : 25
@@ -221,6 +222,7 @@ startBTN.addEventListener('click', () => {
      if (timerRuning === true) {
           Swal.fire("الرجاء ايقاف او إعادة تعين المؤقت حتى تتمكن من البدء من جديد")
      } else {
+          startAudio.play()
           updateTimer()
           myInterval = setInterval(updateTimer, 1000)
           timerRuning = true
