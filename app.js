@@ -19,7 +19,11 @@ const shortBreakSettings = document.getElementById('shortBreak-settings')
 const longBreakSettings = document.getElementById('longBreak-settings')
 const closeBTN = document.getElementById('close')
 const fullScrBTN = document.getElementById('fullscr')
+const focuseCycles = document.getElementById('focuse-cycles')
+const cyclesNum = document.getElementById('cycles-num')
 
+let focuseCyclesNum = 0
+let newStudyCyclesNum = 0
 let storedShortTime;
 let storedLongTime;
 let storedFoucseTime;
@@ -180,6 +184,7 @@ function updateTimer() {
                clearInterval(myInterval)
                timerRuning = false
                audio.play()
+               updateFoucseCycle()
 
                if (startingTime === shortBreakTime) {
                     askPermission('اسطورة')
@@ -295,7 +300,7 @@ addTaskButton.addEventListener('click', addNewToDo)
 function addNewToDo(e) {
      addtoLoccalStorage(inputEL.value)
      const newToDo = document.createElement('li')
-     newToDo.innerHTML = `<span><i class="fa-solid fa-trash"></i></span>${inputEL.value}`
+     newToDo.innerHTML = `<p><span><i class="fa-solid fa-trash"></i></span>${inputEL.value}</p>`
      toDoListUl.appendChild(newToDo)
      inputEL.value = ''
      complateTasks(newToDo, e)
@@ -308,7 +313,9 @@ function complateTasks(newToDo, e) {
                newToDo.remove()
                removeToDoListFromLocalStorage(newToDo)
           } else {
+               // newToDo.children[0].classList.toggle('tododone')
                newToDo.classList.toggle('done')
+               compleateToDoItemFromLocalStorage(newToDo)
           }
      }
 }
@@ -335,11 +342,33 @@ function getToDoListFromLocalStorage() {
      }
      toDos.forEach((toDo) => {
           const newToDo = document.createElement('li')
-          newToDo.innerHTML = `<span><i class="fa-solid fa-trash"></i></span>${toDo}`
+          newToDo.innerHTML = `<p><span><i class="fa-solid fa-trash"></i></span>${toDo}</p>`
           toDoListUl.appendChild(newToDo)
           complateTasks(newToDo)
      })
 }
+
+function compleateToDoItemFromLocalStorage(newToDo) {
+     let toDos;
+     if (localStorage.getItem('toDos') === null) {
+          toDos = []
+     } else {
+          toDos = JSON.parse(localStorage.getItem('toDos'))
+     }
+     let toDoText = newToDo.innerText
+     let toDoHTML = newToDo.innerHTML
+     console.log(toDoHTML)
+
+     var newToDoHTML = toDoHTML.replace('<p>', '<p class="tododone">')
+
+     let toDoIndex = toDos.indexOf(toDoText)
+     toDos.splice(toDoIndex, 1)
+     localStorage.setItem('toDos', JSON.stringify(toDos))
+     addtoLoccalStorage(newToDoHTML)
+     // location.reload()
+
+}
+
 
 function removeToDoListFromLocalStorage(newToDo) {
      let toDos;
@@ -349,6 +378,8 @@ function removeToDoListFromLocalStorage(newToDo) {
           toDos = JSON.parse(localStorage.getItem('toDos'))
      }
      let toDoText = newToDo.innerText
+     let toDoHTML = newToDo.innerHTML
+     console.log(toDoHTML)
      let toDoIndex = toDos.indexOf(toDoText)
      toDos.splice(toDoIndex, 1)
      localStorage.setItem('toDos', JSON.stringify(toDos))
@@ -372,3 +403,12 @@ document.addEventListener('dblclick', () => {
      toggleFullScreen()
 
 })
+
+updateFoucseCycle = () => {
+     focuseCyclesNum++
+     if (focuseCyclesNum == 4) {
+          newStudyCyclesNum++
+          cyclesNum.innerHTML = newStudyCyclesNum + " "
+     }
+     focuseCycles.innerHTML = focuseCyclesNum + " "
+}

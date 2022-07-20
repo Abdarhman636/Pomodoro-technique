@@ -305,6 +305,16 @@ section .content{
       text-decoration: line-through;
  }
 
+ .todolist li.done {
+     opacity: 0.7;
+     text-decoration: line-through;
+}
+
+.tododone {
+     opacity: 0.7;
+     text-decoration: line-through;
+}
+
  .todolist li span {
       position: absolute;
       left: 0;
@@ -347,6 +357,10 @@ section .content{
      color: var(--main-color);
      font-size: 22px;
      cursor: pointer;
+ }
+
+ .cycle-div {
+     color: var(--secondry-color);
  }
 
  @media only screen and (max-width: 1400px) {
