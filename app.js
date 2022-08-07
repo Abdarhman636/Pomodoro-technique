@@ -33,7 +33,7 @@ auth.onAuthStateChanged(user => {
           getDataFromDB(user)
           getCurrentUserName(user)
      } else {
-          toDoListUl.innerHTML = `<p>مفيش داتا حضرتك</p>`
+          toDoListUl.innerHTML = `<p>يبدو انه لا يوجد لديك مهام في الوقت الحالي</p>`
           userNameElm.innerHTML = '<a href="login-page.html">تسجيل الدخول</a>'
      }
 })
@@ -43,7 +43,7 @@ function getCurrentUserName(user) {
      db.collection('users').where('email', '==', user.email).onSnapshot((datacopy) => {
           datacopy.docs.forEach(data => {
                var userName = data.data().name
-               userNameElm.innerHTML = `${userName} مرحبا`
+               userNameElm.innerHTML = `مرحبا ${userName}`
                singOutElm.innerHTML = 'تسجيل الخروج'
 
           })
@@ -421,7 +421,7 @@ function addToDosToFirebase() {
           inputEL.value = ''
      }).catch(err => {
           toDoListUl.innerHTML = `<p>الرجاء تسجيل الدخول حتى تتمكن من اضافة المهام الخاصة بك</p>`
-          console.error(err)
+          addTaskButton.classList.remove('active')
           inputEL.value = ''
      })
 
