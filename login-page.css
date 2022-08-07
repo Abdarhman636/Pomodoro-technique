@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+:root {
+     --main-color: #CF4F4E;
+     --secondry-color: #FFFAE5;
+     --border-r: 5px;
+   }  
+
+   *, *::before, *::after {
+     box-sizing: border-box;
+     margin: 0;
+   }
+
+   body, h1, h2, h3, h4, h5, h6, p, ul, li {
+        padding: 0;
+        margin: 0;
+        font-family: 'Cairo', sans-serif;
+   }
+
+   ol, ul {
+	list-style: none;
+     font-family: 'Cairo', sans-serif;
+}
+
+button {
+     border: none;
+     font-family: 'Cairo', sans-serif;
+}
+html {
+     height: 100vh;
+}
+
+body {
+     height: 100vh !important;
+     /* position: relative; */
+     transition: all 0.3s ease;
+     /* overflow: hidden; */
+}
+
+.my-container {
+     height: 100vh !important;
+     position: relative;
+}
+
+.main-dev {
+     height: 100vh !important;
+     background-color: var(--main-color);
+     /* margin-top: 40px; */
+     /* flex: 2.3; */
+}
+input {
+     text-align: center !important;
+     background-color: transparent !important;
+     border: none !important;
+     border-radius: 0 !important;
+     border-bottom: 1px solid gray !important;
+}
+
+#form, #signupform {
+     /* height: 100%; */
+}
+.form-container {
+     background-color: var(--secondry-color);
+     border-radius: var(--border-r);
+     width: 380px;
+     height: 480px;
+     position: relative;
+     margin: 6% auto;
+     overflow: hidden;
+}
+button {
+     background-color: var(--main-color);
+     color: var(--secondry-color);
+     border-radius: var(--border-r);
+}
+
+.button-box {
+     width: 230px;
+     margin: 35px auto;
+     position: relative;
+     box-shadow: 0 0 20px 9px #ff61241f;
+     border-radius: 30px;
+}
+
+.toggle-btn {
+     padding: 10px 30px;
+     cursor: pointer;
+     background-color: transparent;
+     border: 0;
+     outline: none;
+     position: relative;
+     color: black;
+}
+
+#btn {
+     top: 0;
+     left: 0;
+     position: absolute;
+     width: 120px;
+     height: 100%;
+     background: var(--main-color);
+     border-radius: 30px;
+     transition: 0.5s;
+}
+
+.input-group {
+     position: absolute;
+     width: 280px;
+     transition: 0.5s;
+}
+
+#form {
+     left: 50px;
+}
+
+#signupform {
+     left: 450px;
+}
+
+.social-icons i {
+     font-size: 20px;
+     color: var(--secondry-color);
+     background-color: var(--main-color);
+     padding: 8px;
+     margin: 5px;
+     border-radius: 50%;
+     cursor: pointer;
+}
+
+small {
+     cursor: pointer;
+}
+
+#fullscr {
+     top: 35px;
+     right: 85px;
+     color: var(--secondry-color);
+     cursor: pointer;
+     z-index: 100;
+    }
+
+    #fullscr a {
+     color: var(--secondry-color);
+     font-size: 20px;
+     text-decoration: none;
+    }

@@ -6,6 +6,7 @@ const resetBTN = document.getElementById('reset-btn')
 const foucsTab = document.getElementById('focus')
 const shortBRtab = document.getElementById('shortBR')
 const longBRtab = document.getElementById('longBR')
+const toDoForm = document.getElementById('todoform')
 const inputEL = document.querySelector('.todo-dev input')
 const addTaskButton = document.querySelector('.todo-dev button')
 const toDoListUl = document.querySelector('.todolist')
@@ -21,13 +22,52 @@ const closeBTN = document.getElementById('close')
 const fullScrBTN = document.getElementById('fullscr')
 const focuseCycles = document.getElementById('focuse-cycles')
 const cyclesNum = document.getElementById('cycles-num')
+const userNameElm = document.getElementById('userName')
+const singOutElm = document.getElementById('singout')
+// import userId from './auth'
+
+// check if the user loged in or not
+// get the date form the DB if upon user status
+auth.onAuthStateChanged(user => {
+     if (user) {
+          getDataFromDB(user)
+          getCurrentUserName(user)
+     } else {
+          toDoListUl.innerHTML = `<p>مفيش داتا حضرتك</p>`
+          userNameElm.innerHTML = '<a href="/login-page.html">تسجيل الدخول</a>'
+     }
+})
+
+function getCurrentUserName(user) {
+     console.log(user.email)
+     db.collection('users').where('email', '==', user.email).onSnapshot((datacopy) => {
+          datacopy.docs.forEach(data => {
+               var userName = data.data().name
+               userNameElm.innerHTML = `${userName} مرحبا`
+               singOutElm.innerHTML = 'تسجيل الخروج'
+
+          })
+     })
+
+     // console.log(user)
+}
+
+
+function getTheCurrentUser() {
+     if (auth.currentUser == null) {
+          return "no logging user"
+     } else {
+          return auth.currentUser.uid
+
+     }
+}
 
 let focuseCyclesNum = 0
-let newStudyCyclesNum = 0
+var newStudyCyclesNum = 0
 let storedShortTime;
 let storedLongTime;
 let storedFoucseTime;
-let studyCircle = 0;
+var studyCircle = 0;
 let ourPermission;
 let timerRuning = false
 let startingTime = localStorage.getItem('storedFoucseTime') ? localStorage.getItem('storedFoucseTime') : 25
@@ -39,11 +79,75 @@ let startingMinutes = Math.floor(time / 60)
 let audio = new Audio('assets/audio/alarm.mp3')
 let startAudio = new Audio('assets/audio/startaudio.mp3')
 const startingseconds = "0" + 0
+let studyCircleFormDB = 0
 
+
+// get the date from the db
+function getDataFromDB(user) {
+     let logginedUser = user.uid
+     db.collection('toDos').where('user', '==', logginedUser).onSnapshot((datacopy) => {
+          if (datacopy.docs.length == 0) {
+               toDoListUl.innerHTML = `<p>مفيش داتا حضرتك</p>`
+          } else {
+               let htmltodo = ''
+               let dbToDos = datacopy.docs
+               dbToDos.forEach(dbtodo => {
+                    let dbLi = dbtodo.data().todo
+                    let dbLiHtml = `<li>
+                    <div class="d-flex justify-content-end">
+                         <input id="complateBTN" data-id=${dbtodo.id} onchange="compleateTasks()" class="order-1 ms-1" type="checkbox">
+                         <p><span>
+                                   <i data-id=${dbtodo.id} id="deletBTN" class="fa-solid fa-trash"></i>
+                              </span>${dbLi}</p>
+                    </div>
+               </li>`
+                    htmltodo += dbLiHtml
+               })
+
+               toDoListUl.innerHTML = htmltodo
+               compleateTasks(toDoListUl)
+          }
+     })
+}
+
+// console.log(checkbox
+
+function compleateTasks(toDoListUl) {
+     toDoListUl.addEventListener('click', e => {
+          let targetELM = e.target
+          if (targetELM.getAttribute('id') == 'deletBTN') {
+               db.collection('toDos').doc(targetELM.getAttribute('data-id')).delete()
+          } else if (targetELM.getAttribute('id') == 'complateBTN') {
+               setTimeout(() => {
+                    db.collection('toDos').doc(targetELM.getAttribute('data-id')).delete()
+               }, 1000)
+          }
+
+     })
+}
+
+
+getStudyCycle()
+
+function getStudyCycle() {
+     auth.onAuthStateChanged(user => {
+          if (user == null) {
+               cyclesNum.innerHTML = studyCircleFormDB + " "
+          } else {
+               db.collection('users').doc(user.uid).get().then((user) => {
+                    cyclesNum.innerHTML = user.data().studycyrc + " "
+               })
+          }
+     })
+}
+
+
+// set the default start time
 focusTimeSettings.value = localStorage.getItem('storedFoucseTime') ? localStorage.getItem('storedFoucseTime') : 25
 shortBreakSettings.value = localStorage.getItem('storedShortTime') ? localStorage.getItem('storedShortTime') : 5;
 longBreakSettings.value = localStorage.getItem('storedLongTime') ? localStorage.getItem('storedLongTime') : 15
 
+// add all the time to the local storage
 function addTimeToLocalStorage(foucsTime, startingTime, shortBreakTime, longBreakTime) {
      if (localStorage.getItem('storedFoucseTime')) {
           storedFoucseTime = startingTime
@@ -74,7 +178,7 @@ function addTimeToLocalStorage(foucsTime, startingTime, shortBreakTime, longBrea
      location.reload()
 }
 
-
+// send notification
 function askPermission(NotificationMSG) {
      if (Notification.permission === 'granted') {
           showNotification(NotificationMSG)
@@ -93,13 +197,7 @@ function showNotification(NotificationMSG) {
      })
 }
 
-// const showNotificationtwo = (NotificationMSG) => {
-//      doneNotification = new Notification('كفو عليك ي بطل', {
-//           body: NotificationMSG,
-//           alert: 'لازم يكون عندك هدف علشان تعرف تحققع'
-//      })
-// }
-
+// Settings
 settingsBTN.addEventListener('click', () => {
      settingsDev.classList.toggle('showset')
 })
@@ -120,6 +218,7 @@ settingsForm.addEventListener('submit', (e) => {
 })
 
 
+// Quatas
 loadQuota()
 
 function loadQuota() {
@@ -137,10 +236,11 @@ function getRandomQuates(Quotas) {
 
 setInterval(loadQuota, 60000);
 
-
+// 
 pomodoroTimerEl.innerHTML = `${startingMinutes}: ${startingseconds}`
 
-document.addEventListener('DOMCcontentLoaded', getToDoListFromLocalStorage())
+
+// tapp
 foucsTab.addEventListener('click', foucsTimeFun)
 shortBRtab.addEventListener('click', shortBreakFun)
 longBRtab.addEventListener('click', longBreakFun)
@@ -171,7 +271,7 @@ function longBreakFun() {
      changeLongBreakColor()
 }
 
-
+// The main function for the timer
 function updateTimer() {
      const minutes = Math.floor(time / 60)
      let seconds = time % 60
@@ -184,7 +284,7 @@ function updateTimer() {
                clearInterval(myInterval)
                timerRuning = false
                audio.play()
-               updateFoucseCycle()
+
 
                if (startingTime === shortBreakTime) {
                     askPermission('اسطورة')
@@ -204,11 +304,15 @@ function updateTimer() {
                          shortBreakFun()
                          changeShortBreakColor()
                          studyCircle++
-                    } else if (studyCircle >= 4) {
+                         focuseCycles.innerHTML = studyCircle + " "
+                    } else if (studyCircle = 4) {
                          Swal.fire("✌️  كفو عليك ي بطل، تستاهل راحه طويلة")
                          longBRtab.checked = true
                          longBreakFun()
                          studyCircle = 0
+                         focuseCycles.innerHTML = studyCircle + " "
+                         newStudyCyclesNum++
+                         cyclesNum.innerHTML = newStudyCyclesNum + " "
                     }
                }
 
@@ -223,6 +327,7 @@ function updateTimer() {
      }
 }
 
+// controle the timer
 startBTN.addEventListener('click', () => {
      if (timerRuning === true) {
           Swal.fire("الرجاء ايقاف او إعادة تعين المؤقت حتى تتمكن من البدء من جديد")
@@ -242,6 +347,8 @@ puseBTN.addEventListener('click', () => {
      timerRuning = false
 })
 
+
+// move between taps
 resetBTN.addEventListener('click', () => {
      time = startingTime * 60
      seconds = "0" + 0
@@ -268,10 +375,11 @@ function changeFoucsTimeColor() {
      document.body.classList.add('foucs-them')
 }
 
+
+// controle add to list button
 inputEL.onkeyup = () => {
      let userInput = inputEL.value
      if (userInput.trim() != 0) {
-          console.log(userInput.length)
           if (userInput.length <= 40) {
                addTaskButton.classList.add('active')
           } else {
@@ -282,12 +390,14 @@ inputEL.onkeyup = () => {
      }
 }
 
+// submit the todo 
 inputEL.addEventListener('keydown', (e) => {
      let userInput = inputEL.value
      if (e.key === 'Enter') {
           if (userInput.trim() != 0) {
                addTaskButton.classList.add('active')
-               addNewToDo(e)
+               // addNewToDo(e)
+               addToDosToFirebase()
                inputEL.value = ''
           } else {
                addTaskButton.classList.remove('active')
@@ -295,95 +405,28 @@ inputEL.addEventListener('keydown', (e) => {
      }
 });
 
-addTaskButton.addEventListener('click', addNewToDo)
-
-function addNewToDo(e) {
-     addtoLoccalStorage(inputEL.value)
-     const newToDo = document.createElement('li')
-     newToDo.innerHTML = `<p><span><i class="fa-solid fa-trash"></i></span>${inputEL.value}</p>`
-     toDoListUl.appendChild(newToDo)
-     inputEL.value = ''
-     complateTasks(newToDo, e)
-}
 
 
-function complateTasks(newToDo, e) {
-     newToDo.onclick = (e) => {
-          if (e.target.classList.contains('fa-trash')) {
-               newToDo.remove()
-               removeToDoListFromLocalStorage(newToDo)
-          } else {
-               // newToDo.children[0].classList.toggle('tododone')
-               newToDo.classList.toggle('done')
-               compleateToDoItemFromLocalStorage(newToDo)
-          }
-     }
-}
+// add to do to the todos list
+addTaskButton.addEventListener('click', addToDosToFirebase)
 
 
-function addtoLoccalStorage(userInput) {
-     let toDos;
-     if (localStorage.getItem('toDos') === null) {
-          toDos = []
-     } else {
-          toDos = JSON.parse(localStorage.getItem('toDos'))
-     }
-     toDos.push(userInput)
-     localStorage.setItem('toDos', JSON.stringify(toDos))
-}
-
-
-function getToDoListFromLocalStorage() {
-     let toDos;
-     if (localStorage.getItem('toDos') === null) {
-          toDos = []
-     } else {
-          toDos = JSON.parse(localStorage.getItem('toDos'))
-     }
-     toDos.forEach((toDo) => {
-          const newToDo = document.createElement('li')
-          newToDo.innerHTML = `<p><span><i class="fa-solid fa-trash"></i></span>${toDo}</p>`
-          toDoListUl.appendChild(newToDo)
-          complateTasks(newToDo)
+// add todos to the firebase DB
+function addToDosToFirebase() {
+     db.collection('toDos').add({
+          todo: inputEL.value,
+          comp: false,
+          user: getTheCurrentUser()
+     }).then(() => {
+          inputEL.value = ''
+     }).catch(err => {
+          toDoListUl.innerHTML = `<p>الرجاء تسجيل الدخول حتى تتمكن من اضافة المهام الخاصة بك</p>`
+          console.error(err)
+          inputEL.value = ''
      })
-}
-
-function compleateToDoItemFromLocalStorage(newToDo) {
-     let toDos;
-     if (localStorage.getItem('toDos') === null) {
-          toDos = []
-     } else {
-          toDos = JSON.parse(localStorage.getItem('toDos'))
-     }
-     let toDoText = newToDo.innerText
-     let toDoHTML = newToDo.innerHTML
-     console.log(toDoHTML)
-
-     var newToDoHTML = toDoHTML.replace('<p>', '<p class="tododone">')
-
-     let toDoIndex = toDos.indexOf(toDoText)
-     toDos.splice(toDoIndex, 1)
-     localStorage.setItem('toDos', JSON.stringify(toDos))
-     addtoLoccalStorage(newToDoHTML)
-     // location.reload()
 
 }
 
-
-function removeToDoListFromLocalStorage(newToDo) {
-     let toDos;
-     if (localStorage.getItem('toDos') === null) {
-          toDos = []
-     } else {
-          toDos = JSON.parse(localStorage.getItem('toDos'))
-     }
-     let toDoText = newToDo.innerText
-     let toDoHTML = newToDo.innerHTML
-     console.log(toDoHTML)
-     let toDoIndex = toDos.indexOf(toDoText)
-     toDos.splice(toDoIndex, 1)
-     localStorage.setItem('toDos', JSON.stringify(toDos))
-}
 
 function toggleFullScreen() {
      if (document.fullscreen) {
@@ -404,11 +447,13 @@ document.addEventListener('dblclick', () => {
 
 })
 
-updateFoucseCycle = () => {
-     focuseCyclesNum++
-     if (focuseCyclesNum == 4) {
-          newStudyCyclesNum++
-          cyclesNum.innerHTML = newStudyCyclesNum + " "
-     }
-     focuseCycles.innerHTML = focuseCyclesNum + " "
+singOutElm.addEventListener('click', signOutFun)
+
+
+// sign out the user
+function signOutFun() {
+     auth.signOut().then(() => {
+          console.log('user Signed Out')
+          location.reload()
+     })
 }

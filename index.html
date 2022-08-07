@@ -16,7 +16,7 @@
 </head>
 
 <body>
-     <div class="my-container ">
+     <div class="my-container">
           <!-- <h1>1</h1> -->
 
           <!-- -------------------------------------------------------------------------------- -->
@@ -50,6 +50,8 @@
 
                <span class="position-absolute" id="settings"><i class="fa-solid fa-gear"></i></span>
                <span class="position-absolute" id="fullscr"><i class="fa-solid fa-expand"></i></span>
+               <span class="position-absolute" id="singout"></i></span>
+               <span class="position-absolute" id="userName"></span>
 
 
                <div class="tabs-wrapper ">
@@ -72,11 +74,11 @@
                               <button id="reset-btn" class="fw-bold"><i
                                         class="fa-solid fa-arrow-rotate-left"></i></button>
                               <button id="puse-btn">ايقاف</button>
-                              <button id="start-btn" class="fw-bold">إبدأ</button>
+                              <button id="start-btn" class="fw-bold">ابدأ</button>
                          </div>
 
                          <div class="py-3 cycle-div">
-                              <p class="text-center"> <strong id="focuse-cycles"> 0 </strong>:جلسات التركيز </p>
+                              <p class="text-center"> <strong id="focuse-cycles"> 0 </strong>:جلسات التركيز</p>
                               <p class="text-center pt-1"> <strong id="cycles-num"> 0 </strong>:الدورات </p>
                          </div>
 
@@ -102,6 +104,27 @@
                     <div class="todo-dev py-5 mt-5 pt-md-4">
                          <input type="text" class="w-100 text-end" placeholder="اكتب مهماتك هنا">
                          <ul class="todolist text-end pt-4 mb-6">
+                              <div class="loader"></div>
+
+                              <!-- <li>
+                                   <div class="d-flex justify-content-end">
+                                        <input class="order-1 ms-1" type="checkbox">
+                                        <p><span>
+                                                  <i class="fa-solid fa-trash"></i>
+                                                  <i class="ms-1 fa-solid fa-pencil"></i>
+                                             </span>شسيبشيب</p>
+                                   </div>
+                              </li>
+                              <li>
+                                   <div class="d-flex justify-content-end">
+
+                                        <input class="order-1 ms-1" type="checkbox">
+                                        <p><span>
+                                                  <i class="fa-solid fa-trash"></i>
+                                                  <i class="ms-1 fa-solid fa-pencil"></i>
+                                             </span>شسيبشيب</p>
+                                   </div>
+                              </li> -->
                          </ul>
 
                          <button class="w-100">اضف المهمة</button>
@@ -109,9 +132,29 @@
                </div>
           </section>
      </div>
+     <script src="https://www.gstatic.com/firebasejs/9.9.1/firebase-app-compat.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/9.9.1/firebase-firestore-compat.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/9.9.1/firebase-auth-compat.js"></script>
+     <script>
+
+          const firebaseConfig = {
+               apiKey: "AIzaSyAIU3fN0K2mS5mVsPyZUKXH4ISrSsIvAfA",
+               authDomain: "promodo-and-todo-list-app.firebaseapp.com",
+               projectId: "promodo-and-todo-list-app",
+               messagingSenderId: "705209616711",
+               appId: "1:705209616711:web:b00df4b0ed356ccab5e462"
+          };
+
+
+          const firebaseApp = firebase.initializeApp(firebaseConfig);
+          const db = firebaseApp.firestore();
+          const auth = firebaseApp.auth();
+          const provider = new firebase.auth.GoogleAuthProvider()
+     </script>
 
      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
      <script src="app.js"></script>
+     <script src="auth.js"></script>
 </body>
 
 </html>
