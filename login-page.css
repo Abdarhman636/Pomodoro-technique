@@ -144,3 +144,25 @@ small {
      font-size: 20px;
      text-decoration: none;
     }
+
+
+ 
+ @media only screen and (max-width: 1100px) {
+
+     .form-container {
+          background-color: var(--secondry-color);
+          border-radius: var(--border-r);
+          width: 316px;
+          height: 480px;
+          position: relative;
+          margin: 6% auto;
+          overflow: hidden;
+      }
+     
+      .input-group {
+          position: absolute;
+          width: 240px;
+          transition: 0.5s;
+      }
+     
+   }

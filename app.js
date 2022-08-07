@@ -34,7 +34,7 @@ auth.onAuthStateChanged(user => {
           getCurrentUserName(user)
      } else {
           toDoListUl.innerHTML = `<p>مفيش داتا حضرتك</p>`
-          userNameElm.innerHTML = '<a href="/login-page.html">تسجيل الدخول</a>'
+          userNameElm.innerHTML = '<a href="login-page.html">تسجيل الدخول</a>'
      }
 })
 

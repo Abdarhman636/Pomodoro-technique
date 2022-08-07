@@ -45,6 +45,12 @@ signUpForm.addEventListener('submit', (e) => {
           // change in the UI once the user sign in 
           console.log('done')
           location.replace('index.html');
+     }).catch(err => {
+          Swal.fire({
+               icon: 'error',
+               text: 'البريد الإلكتروني مستخدم بالفعل، الرجاء استخدام بريد إلكتروني آخر',
+          })
+          form.reset()
      })
 })
 
@@ -65,11 +71,16 @@ form.addEventListener('submit', (e) => {
      const email = singInEmailInput.value
      const pass = signInPassInput.value
      auth.signInWithEmailAndPassword(email, pass).then(accessInfo => {
-          console.log(accessInfo.user)
+          form.reset()
+          console.log('done')
+          location.replace('index.html');
+     }).catch(err => {
+          Swal.fire({
+               icon: 'error',
+               text: 'لا يوجد حساب يطابق البيانات المدخلة، الرجاء التحقق من البيانات او تسجيل الدخول',
+          })
+          form.reset()
      })
-     form.reset()
-     console.log('done')
-     location.replace('index.html');
 })
 
 function register() {

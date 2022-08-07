@@ -54,8 +54,9 @@
                          <input type="email" required class="form-control" id="signup-email-input" placeholder="E-mail">
                     </div>
                     <div class="mb-3 pt-2 pb-3">
-                         <input type="password" placeholder="Password" class="form-control" required
-                              id="signup-password-input">
+                         <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                              title="كلمة المرور يجب أن تحتوي على رقم واحد على الأقل وحرف واحد كبير وصغير و 8 أحرف على الأقل أو أكثر"
+                              placeholder="Password" class="form-control" required id="signup-password-input">
                     </div>
                     <button type="submit" id="submit-btn" class="fw-bold w-100 mb-4 py-1">ارسال</button>
                </form>
