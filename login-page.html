@@ -16,6 +16,8 @@
 
 <body>
      <span class="position-absolute" id="fullscr"><a href="index.html">الرئيسية</a></span>
+     <a href="index.html"><img src="assets/imgs/logo.png" class="position-absolute" id="logo" alt=""></a>
+
      <!-- sign in form  -->
      <div class="my-container main-dev justify-content-center d-flex flex-column align-items-center position-relative">
           <div class="form-container">
@@ -25,18 +27,19 @@
                     <button type="button" class="toggle-btn" onclick="register()">التسجيل</button>
                </div>
 
-               <div class="social-icons text-center">
+               <!-- <div class="social-icons text-center">
                     <i id='google' class="fa-brands fa-google pe-2"></i>
                     <i class="fa-brands fa-facebook"></i>
-               </div>
+               </div> -->
 
                <form id="form" action="" class="p-5 input-group">
 
                     <div class="mb-3">
-                         <input type="email" required class="form-control" id="signin-email-input" placeholder="E-mail">
+                         <input type="email" required class="form-control" id="signin-email-input"
+                              placeholder="البريد الإلكتروني">
                     </div>
                     <div class="mb-3 pt-2 pb-3">
-                         <input type="password" class="form-control" placeholder="Password" required
+                         <input type="password" class="form-control" placeholder="كلمة المرور" required
                               id="signin-password-input">
                     </div>
                     <button type="submit" id="submit-btn" class="fw-bold w-100 mb-4 py-1">ارسال</button>
@@ -48,15 +51,16 @@
                <form id="signupform" action="" class="p-5 input-group">
 
                     <div class="mb-3">
-                         <input type="text" required class="form-control" placeholder="Name" id="signup-name-input">
+                         <input type="text" required class="form-control" placeholder="الأسم" id="signup-name-input">
                     </div>
                     <div class="mb-3">
-                         <input type="email" required class="form-control" id="signup-email-input" placeholder="E-mail">
+                         <input type="email" required class="form-control" id="signup-email-input"
+                              placeholder="البريد الإلكتروني">
                     </div>
                     <div class="mb-3 pt-2 pb-3">
                          <input type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                               title="كلمة المرور يجب أن تحتوي على رقم واحد على الأقل وحرف واحد كبير وصغير و 8 أحرف على الأقل أو أكثر"
-                              placeholder="Password" class="form-control" required id="signup-password-input">
+                              placeholder="كلمة المرور" class="form-control" required id="signup-password-input">
                     </div>
                     <button type="submit" id="submit-btn" class="fw-bold w-100 mb-4 py-1">ارسال</button>
                </form>

@@ -97,13 +97,14 @@ function login() {
 
 registerlink.addEventListener('click', register)
 
-google.addEventListener('click', signInWithGoogle)
+// google.addEventListener('click', signInWithGoogle)
 
 function signInWithGoogle() {
      firebase.auth()
           .signInWithPopup(provider)
           .then((result) => {
                var credential = result.credential;
+               console.log(result)
 
                // This gives you a Google Access Token. You can use it to access the Google API.
                var token = credential.accessToken;

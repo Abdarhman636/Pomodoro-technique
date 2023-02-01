@@ -166,3 +166,11 @@ small {
       }
      
    }
+
+   #logo {
+     top: 14px;
+     left: 20px;
+     cursor: pointer;
+     z-index: 100;
+     width: 200px;
+}

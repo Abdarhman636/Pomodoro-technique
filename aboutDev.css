@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+:root {
+     --main-color: #CF4F4E;
+     --secondry-color: #FFFAE5;
+     --border-r: 5px;
+   }  
+
+   *, *::before, *::after {
+     box-sizing: border-box;
+     margin: 0;
+   }
+
+   body, h1, h2, h3, h4, h5, h6, p, ul, li {
+        padding: 0;
+        margin: 0;
+        font-family: 'Cairo', sans-serif;
+   }
+
+   ol, ul {
+	list-style: none;
+     font-family: 'Cairo', sans-serif;
+}
+
+button {
+     border: none;
+     font-family: 'Cairo', sans-serif;
+}
+
+
+body {
+     position: relative;
+     height: 100%;
+     transition: all 0.3s ease;
+     background-color: var(--main-color) !important;
+}
+
+h1 {
+     color: var(--secondry-color);
+}
+
+article {
+     color: #ddd9c9;
+}
+
+li {
+     padding: 6px 0;
+     color: #ddd9c9;
+}
+
+a {
+     text-decoration: none;
+     color: black
+}
+
+#home {
+     top: 0px;
+     right: 100px;
+     color: var(--secondry-color);
+     font-size: 18px;
+     cursor: pointer;
+     z-index: 100;
+}
+
+#logo {
+     top: -21px;
+     left: 40px;
+     cursor: pointer;
+     z-index: 100;
+}
+
+#logo img{
+     width: 200px;
+
+}
+
+button {
+     border-radius: 2px;
+}
+
+button:hover {
+     background-color: #2044CF;
+}
+
+button:hover a, button:hover i {
+     color: var(--secondry-color);
+
+}
+
+
+@media only screen and (max-width: 600px) {
+     #mine{
+          width: 100%;
+          height: 100%;
+     }   
+     
+     #home {
+          right: 20px;
+     }
+   }

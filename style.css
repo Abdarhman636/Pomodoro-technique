@@ -34,7 +34,7 @@ button {
 }
 
 .long-break-them {
-     --main-color: #0055A1;
+     --main-color: #81b29a;
 }
 
 .foucs-them {
@@ -124,6 +124,30 @@ div#eye-dropper-overlay {
           z-index: 100;
      }
 
+     #logo {
+          top: 14px;
+          left: 20px;
+          cursor: pointer;
+          z-index: 100;
+          width: 200px;
+     }
+
+     #about-app {
+          top: 65px;
+          left: 50%;
+          color: var(--secondry-color);
+          font-size: 15px;
+          cursor: pointer;
+          z-index: 100;
+          color: white;
+          Transform: translate(-50%, -50%)
+     }
+
+     #about-app a {
+          color: wheat;
+     }
+
+
      #userName a {
           text-decoration: none;
           color: var(--secondry-color);
@@ -146,7 +170,7 @@ div#eye-dropper-overlay {
           font-size: 15px;
           cursor: pointer;
           z-index: 100;
-          color: var(--secondry-color);
+          color: black;
          }
      
      #settings i {
@@ -236,7 +260,8 @@ section .content{
  }
 
 .Pomodoro-timer {
-     font-size: 9.2vw;
+     font-size: 11.2vw;
+     color: var(--secondry-color) !important;
 }
 
 #start-btn {
@@ -512,3 +537,8 @@ section .content{
      }
    }
    
+   footer p a {
+     text-decoration: none;
+     cursor: pointer;
+     color: black;
+   }

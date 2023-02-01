@@ -43,6 +43,7 @@
                                    <input class="text-end mt-1 mb-3" type="number" id="longBreak-settings" required
                                         placeholder="30" name="focus" min="1" max="30">
                                    <button class="mt-2 fw-bold" type="submit">تعديل</button>
+                                   <button id='singout' class="py-1 mt-3 fw-bold">تسجيل الخروج</button>
                               </form>
                          </div>
                     </div>
@@ -50,8 +51,8 @@
 
                <span class="position-absolute" id="settings"><i class="fa-solid fa-gear"></i></span>
                <span class="position-absolute" id="fullscr"><i class="fa-solid fa-expand"></i></span>
-               <span class="position-absolute" id="singout"></i></span>
-               <span class="position-absolute" id="userName"></span>
+               <span class="position-absolute d-none d-sm-block" id="userName"></span>
+               <img src="assets/imgs/logo.png" class="position-absolute" id="logo" alt="">
 
 
                <div class="tabs-wrapper ">
@@ -79,7 +80,8 @@
 
                          <div class="py-3 cycle-div">
                               <p class="text-center"> <strong id="focuse-cycles"> 0 </strong>:جلسات التركيز</p>
-                              <p class="text-center pt-1"> <strong id="cycles-num"> 0 </strong>:الدورات </p>
+                              <p class="text-center pt-1" style="display: none;"> <strong id="cycles-num"> 0
+                                   </strong>:الدورات </p>
                          </div>
 
                     </section>
@@ -105,33 +107,23 @@
                          <input type="text" class="w-100 text-end" placeholder="اكتب مهماتك هنا">
                          <ul class="todolist text-end pt-4 mb-6">
                               <div class="loader"></div>
-
-                              <!-- <li>
-                                   <div class="d-flex justify-content-end">
-                                        <input class="order-1 ms-1" type="checkbox">
-                                        <p><span>
-                                                  <i class="fa-solid fa-trash"></i>
-                                                  <i class="ms-1 fa-solid fa-pencil"></i>
-                                             </span>شسيبشيب</p>
-                                   </div>
-                              </li>
-                              <li>
-                                   <div class="d-flex justify-content-end">
-
-                                        <input class="order-1 ms-1" type="checkbox">
-                                        <p><span>
-                                                  <i class="fa-solid fa-trash"></i>
-                                                  <i class="ms-1 fa-solid fa-pencil"></i>
-                                             </span>شسيبشيب</p>
-                                   </div>
-                              </li> -->
                          </ul>
 
-                         <button class="w-100">اضف المهمة</button>
+                         <button class="w-100 mb-5">اضف المهمة</button>
                     </div>
+                    <footer class="mt-5">
+                         <p>
+                              <a href="about.html">حول التطبيق</a>
+                              | <a href="aboutDev.html">حول المطور</a>
+                              | <span> جميع الحقوق محفوظة 2023</span>
+                         </p>
+                    </footer>
                </div>
           </section>
      </div>
+
+
+
      <script src="https://www.gstatic.com/firebasejs/9.9.1/firebase-app-compat.js"></script>
      <script src="https://www.gstatic.com/firebasejs/9.9.1/firebase-firestore-compat.js"></script>
      <script src="https://www.gstatic.com/firebasejs/9.9.1/firebase-auth-compat.js"></script>

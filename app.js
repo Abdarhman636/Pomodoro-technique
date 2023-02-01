@@ -35,17 +35,17 @@ auth.onAuthStateChanged(user => {
      } else {
           toDoListUl.innerHTML = `<p>يبدو انه لا يوجد لديك مهام في الوقت الحالي</p>`
           userNameElm.innerHTML = '<a href="login-page.html">تسجيل الدخول</a>'
+          singOutElm.style.display = 'none'
      }
 })
 
 function getCurrentUserName(user) {
      console.log(user.email)
      db.collection('users').where('email', '==', user.email).onSnapshot((datacopy) => {
+          console.log(datacopy.docs)
           datacopy.docs.forEach(data => {
                var userName = data.data().name
                userNameElm.innerHTML = `مرحبا ${userName}`
-               singOutElm.innerHTML = 'تسجيل الخروج'
-
           })
      })
 
@@ -288,25 +288,25 @@ function updateTimer() {
 
                if (startingTime === shortBreakTime) {
                     askPermission('اسطورة')
-                    Swal.fire("💪 خلص وقت البريك وخلص وقت الشغل")
+                    Swal.fire("💪 خلص وقت الراحة وجاء وقت الشغل")
                     foucsTab.checked = true
                     foucsTimeFun()
                } else if (startingTime === longBreakTime) {
                     askPermission('اسطورة')
-                    Swal.fire("💪 خلص وقت البريك وخلص وقت الشغل")
+                    Swal.fire("💪 خلص وقت الراحة وجاء وقت الشغل")
                     foucsTab.checked = true
                     foucsTimeFun()
                } else {
                     askPermission('اسطورة')
                     if (studyCircle < 4) {
-                         Swal.fire("✌️  كفو عليك ي بطل، تستاهل راحه قصيرة")
+                         Swal.fire("✌️  ي سلام عليك يا بطل ، تستاهل راحه قصيرة")
                          shortBRtab.checked = true
                          shortBreakFun()
                          changeShortBreakColor()
                          studyCircle++
                          focuseCycles.innerHTML = studyCircle + " "
                     } else if (studyCircle = 4) {
-                         Swal.fire("✌️  كفو عليك ي بطل، تستاهل راحه طويلة")
+                         Swal.fire("✌️  ي سلام عليك يا بطل، تستاهل راحه طويلة")
                          longBRtab.checked = true
                          longBreakFun()
                          studyCircle = 0
