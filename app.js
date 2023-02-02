@@ -87,7 +87,7 @@ function getDataFromDB(user) {
      let logginedUser = user.uid
      db.collection('toDos').where('user', '==', logginedUser).onSnapshot((datacopy) => {
           if (datacopy.docs.length == 0) {
-               toDoListUl.innerHTML = `<p>مفيش داتا حضرتك</p>`
+               toDoListUl.innerHTML = `<p>يبدو انه لا يوجد لديك مهام في الوقت الحالي</p>`
           } else {
                let htmltodo = ''
                let dbToDos = datacopy.docs
